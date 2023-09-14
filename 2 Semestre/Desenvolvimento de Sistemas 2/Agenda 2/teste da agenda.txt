@@ -1,0 +1,5 @@
+<?php
+$meunome = "Paulo Victor Santos Colombo";
+$meusalario = 1260.00;
+echo $meunome
+    ?>

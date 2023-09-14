@@ -1,0 +1,5 @@
+Valor da Compra Sem Densconto: R$
+Fomrma de Pagamento escolhida: 
+Desconto de: 
+Você economizou: R$
+Valor à Pagar: 
