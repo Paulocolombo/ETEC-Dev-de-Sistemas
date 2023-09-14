@@ -1,0 +1,33 @@
+create database bd_agenda3;
+
+CREATE TABLE `bd_agenda3`.`curso` (
+  `codigo` INT NOT NULL AUTO_INCREMENT,
+  `descricao` VARCHAR(45) NULL,
+  PRIMARY KEY (`codigo`));
+
+CREATE TABLE `bd_agenda3`.`professor` (
+  `matricula` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(70) NULL,
+  `dt_nascimento` INT NULL,
+  `logradouro` VARCHAR(45) NULL,
+  `num_rua` INT NULL,
+  `bairro` VARCHAR(40) NULL,
+  `cidade` VARCHAR(30) NULL,
+  `uf` VARCHAR(2) NULL,
+  `cep` BIGINT(8) NULL,
+  `salario` DOUBLE NULL,
+  PRIMARY KEY (`matricula`),
+  UNIQUE INDEX `CEP_UNIQUE` (`cep` ASC) VISIBLE);
+
+
+CREATE TABLE `bd_agenda3`.`tel_professores` (
+  `professor_fone_id` INT NOT NULL AUTO_INCREMENT,
+  `num_celular` BIGINT(11) NULL,
+  `matricula` INT NULL,
+  PRIMARY KEY (`professor_fone_id`),
+  INDEX `fk_pt_matricula_idx` (`matricula` ASC) VISIBLE,
+  CONSTRAINT `fk_pt_matricula`
+    FOREIGN KEY (`matricula`)
+    REFERENCES `bd_agenda3`.`professor` (`matricula`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);

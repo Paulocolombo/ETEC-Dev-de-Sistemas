@@ -1,0 +1,51 @@
+create table filial (
+     codigo_filial int(10) auto_increment,
+     filnome varchar(50) not null,
+     telefones int(11) not null,
+     logradouro varchar(80) not null,
+     numrua int(5),
+     cidade varchar(20) not null,
+     uf varchar(2),
+     cep int(8),
+     constraint pk_filial primary key (codigo_filial)
+     );
+
+create table fabricante (
+	codigo_fab int(10) auto_increment,
+	fabnome varchar(50) not null,
+	constraint pk_fabricante primary key (codigo_fab)
+	);
+
+create table veiculo (
+	chassis varchar(30) not null,
+	placa varchar(10) not null,
+	ano int(4)not null,
+	modelo varchar(15),
+	tipcombust varchar (10),
+	cor varchar (20),
+	codigo_fab int,
+	codigo_filial int,
+	constraint pk_veiculo primary key (chassis)
+	);
+
+
+
+	constraint fk_veiculo_codigo_fab
+	foreign key (codigo_fab)
+	references fabricante (codigo_fab),
+	constraint fk_veiculo_codigo_filial
+	foreign key (codigo_filial)
+	references fabricante (codigo_filial)
+	);
+
+
+ alter table veiculo    
+	add constraint fk_veiculo_fab
+    foreign key (codigo_fab)
+    references fabricante (codigo_fab);
+
+ alter table veiculo    
+	add constraint fk_veiculo_filial
+    foreign key (codigo_filial)
+    references filial (codigo_filial);
+	 

@@ -1,0 +1,48 @@
+select c.nome, c.endereco, count(a.numero) as total_aps
+from condominio c
+inner join apartamento a on c.codigo = a.codigo_cond
+group by c.codigo;
+
+
+alter table apartamento
+add valor double (10, 2) not null default 0;
+
+update apartamento
+set valor = '100000.00'
+where numero = 100;
+update apartamento
+set valor = '115000.00'
+where numero = 145;
+update apartamento
+set valor = '125000.00'
+where numero = 150;
+update apartamento
+set valor = '135000.00'
+where numero = 160;
+update apartamento
+set valor = '150000.00'
+where numero = 170;
+update apartamento
+set valor = '200000.00'
+where numero = 200;
+update apartamento
+set valor = '215000.00'
+where numero = 205;
+update apartamento
+set valor = '225000.00'
+where numero = 220;
+update apartamento
+set valor = '235000.00'
+where numero = 250;
+update apartamento
+set valor = '250000.00'
+where numero = 275;
+
+select p.nome, p.telefone, count(pa.rg_prop) as quant_aps, sum(a.valor) as valor_aps
+from proprietario p
+inner join proprietario_apartamento pa on p.rg = pa.rg_prop
+inner join apartamento a on a.numero = pa.numero_ap
+group by p.nome, p.telefone
+order by p.nome;
+
+

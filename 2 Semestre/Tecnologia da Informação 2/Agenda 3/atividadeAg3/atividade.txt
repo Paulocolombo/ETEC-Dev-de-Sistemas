@@ -1,0 +1,65 @@
+CREATE SCHEMA `atividadeag3` ;
+
+CREATE TABLE `atividadeag3`.`new_table` (
+  `matricula_sind` INT NOT NULL AUTO_INCREMENT,
+  `sindnome` VARCHAR(70) NULL,
+  `sindendereco` VARCHAR(45) NULL,
+  `sindtelefone` BIGINT(11) NULL,
+  PRIMARY KEY (`matricula_sind`));
+
+ALTER TABLE `atividadeag3`.`new_table` 
+RENAME TO  `atividadeag3`.`sindico` ;
+
+CREATE TABLE `atividadeag3`.`garagem` (
+  `garnumero` INT NOT NULL AUTO_INCREMENT,
+  `garpadrao` VARCHAR(3) NULL,
+  `garcoberta` VARCHAR(3) NULL,
+  PRIMARY KEY (`garnumero`));
+
+CREATE TABLE `atividadeag3`.`proprietario` (
+  `rg` BIGINT(9) NOT NULL,
+  `propnome` VARCHAR(70) NOT NULL,
+  `proptelefone` BIGINT(11) NULL,
+  `email` VARCHAR(45) NULL,
+  PRIMARY KEY (`rg`));
+
+CREATE TABLE `atividadeag3`.`condominio` (
+  `cod_condo` INT NOT NULL AUTO_INCREMENT,
+  `ende_condo` VARCHAR(60) NULL,
+  `nome_condo` VARCHAR(45) NULL,
+  `matricula_sind` INT NULL,
+  PRIMARY KEY (`cod_condo`),
+  INDEX `fk_sindi_matricula_idx` (`matricula_sind` ASC) VISIBLE,
+  CONSTRAINT `fk_sindi_matricula`
+    FOREIGN KEY (`matricula_sind`)
+    REFERENCES `atividadeag3`.`sindico` (`matricula_sind`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `atividadeag3`.`apartamento` (
+  `apnumero` INT NOT NULL AUTO_INCREMENT,
+  `appadrao` VARCHAR(3) NULL,
+  `apcobertura` VARCHAR(3) NULL,
+  `cod_condo` INT NULL,
+  `garnumero` INT NULL,
+  `rg` BIGINT(9) NULL,
+  PRIMARY KEY (`apnumero`),
+  INDEX `fk_condo_apartamento_idx` (`cod_condo` ASC) VISIBLE,
+  INDEX `fk_gar_apartamento_idx` (`garnumero` ASC) VISIBLE,
+  INDEX `fk_propi_apartamento_idx` (`rg` ASC) VISIBLE,
+  CONSTRAINT `fk_condo_apartamento`
+    FOREIGN KEY (`cod_condo`)
+    REFERENCES `atividadeag3`.`condominio` (`cod_condo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_gar_apartamento`
+    FOREIGN KEY (`garnumero`)
+    REFERENCES `atividadeag3`.`garagem` (`garnumero`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_propi_apartamento`
+    FOREIGN KEY (`rg`)
+    REFERENCES `atividadeag3`.`proprietario` (`rg`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
