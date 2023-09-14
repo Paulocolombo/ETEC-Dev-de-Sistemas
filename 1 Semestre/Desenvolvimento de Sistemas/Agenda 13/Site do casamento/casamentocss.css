@@ -1,0 +1,45 @@
+body{
+    background-color: black;
+}
+.principal{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.coluna1, .coluna2, .coluna3, .coluna4, .coluna15 {
+    align-items: center;
+    margin: 1%;
+} 
+.coluna1 {
+    flex-grow: 1;
+}
+.coluna2 {
+    flex-grow: 1;
+}
+.coluna3 {
+    flex-grow: 1;
+}
+.coluna4 {
+    flex-grow: 1;
+}
+.coluna5 {
+    flex-grow: 1;
+}
+img {
+    width: 100%;
+    margin: 1%;
+}
+h1 {
+    color:rgb(238, 175, 98);
+    text-align: center;
+    font-size: 2.5em;
+    font-family: "Snell Brush Script MT", Brush Script Std, cursive;
+}
+h2 {
+    color:rgb(245, 177, 94);
+    text-align: center;
+    font-size: 1.5em;
+}
+a:link, a:visited{
+    color: rgb(248, 190, 120);
+}

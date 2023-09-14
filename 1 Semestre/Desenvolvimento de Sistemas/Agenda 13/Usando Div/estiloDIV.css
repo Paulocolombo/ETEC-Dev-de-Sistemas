@@ -1,0 +1,25 @@
+.container {
+    width: 100%; /* Determina a largura da div principal, 100% para usar todo o espaço de qualquer dispositivo
+     */
+
+    display:flex; /* o valor flex, indica que essa classe se tornará flexível utilizando os recursos disponíveis do flexbox. Logo após, utilizando a propriedade flex-direction indicamos como os elementos se organizarão */
+
+    flex-direction: row; /* ao aplicar o valor row, estes elementos serão organizados de forma horizontal.*/
+}
+.esquerda,.centro,.direita{
+    font-size: 1.5em;
+    text-align: center;
+}
+.esquerda {
+    flex-grow: 1; /* define o quanto um item ocupa do espaço total do contêiner em que está alojado em relação ao restante dos itens. */
+
+    background: #ff0000;    
+}
+.centro {
+    flex-grow: 2;
+    background: #0f0;    
+}
+.direita {
+    flex-grow: 1;
+    background: #00f;
+}
